@@ -1,0 +1,41 @@
+<div class="new-incident-container">
+  <div class="content">
+    <section>
+      <img [src]="logo" alt="Logo" />
+
+      <h1>Cadastrar novo caso</h1>
+      <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
+
+      <a [routerLink]="['/profile']" class="back-link">
+        <i-feather name="arrow-left" class="icone" style="height: 16px;"></i-feather>
+        Voltar para o perfil
+      </a>
+    </section>
+
+    <form (submit)="handleSubmit($event)">
+      <input 
+        type="text"
+        placeholder="Título do caso"
+        (input)="newIncident.title = titleInput.value"
+        #titleInput
+        required
+      />
+      <textarea 
+        type="text"
+        placeholder="Descrição"
+        (input)="newIncident.description = descriptionInput.value"
+        #descriptionInput
+        required
+      ></textarea>
+      <input 
+        type="text"
+        placeholder="Valor em reais"
+        (input)="newIncident.value = valueInput.value"
+        #valueInput
+        required
+      />
+
+      <button type="submit" class="button">Cadastrar</button>
+    </form>
+  </div>
+</div>

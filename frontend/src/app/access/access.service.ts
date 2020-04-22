@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { throwError, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
-}) 
-export class LoginService {
+})
+export class AccessService {
 
   private baseURL: string = 'http://localhost:3333/';
 
   constructor(private http: HttpClient) { }
 
-  getOngName(userId: string) {
+  getOngName(userId: string): Observable<any> {
 
     return this.http.post(`${this.baseURL}sessions`, { id: userId })
       .pipe(
         catchError(this.handleError)
       )
+  }
+
+  registerONG(ongData: any): Observable<any> {
+    return this.http.post(`${this.baseURL}ongs`, ongData)
+      .pipe(
+        catchError(error => throwError(error))
+      );
   }
 
   handleError(error) {
@@ -29,5 +36,4 @@ export class LoginService {
 
     return throwError(errorMessage);
   }
-
 }

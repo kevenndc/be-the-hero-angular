@@ -1,0 +1,25 @@
+<div class="profile-container">
+  <header>
+    <img [src]="logo" alt="Logo" />
+    
+    <span>Bem vinda, {{ongName}} </span>
+
+    <a [routerLink]="['/incidents/new']" class="button" >Cadastrar novo caso</a>
+
+    <button type="button" (click)="handleLogout($event)">
+      <i-feather name="power" class="icone" style="height: 18px; font-size: 18px;"></i-feather>
+    </button>
+  </header>
+
+  <h1>Casos cadastrados</h1>
+
+  <h2 *ngIf="incidents.length == 0">Não há casos cadastrados</h2>
+
+  <ul>
+    <app-incident 
+      *ngFor="let incident of incidents" 
+      [incident]="incident" 
+      (delete)="handleDeleteIncident($event)">
+    </app-incident>
+  </ul>
+</div>

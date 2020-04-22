@@ -4,13 +4,20 @@ module.exports = {
   async create(request, response) {
     const { title, description, value } = request.body;
     const ong_id = request.headers.authorization;
+    let id = '';
 
-    const [id] = await connection('incidents').insert({
-      title,
-      value,
-      description,
-      ong_id
-    });
+    try {
+      [id] = await connection('incidents').insert({
+        title,
+        value,
+        description,
+        ong_id
+      });
+    } catch (error) {
+
+      return response.status(500);
+    }
+    
 
     return response.json({ id });
   },

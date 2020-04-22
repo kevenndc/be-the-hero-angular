@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LoginService } from '../../services/login/login.service';
 import { Router } from '@angular/router';
+import { AccessService } from '../access.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private accessService: AccessService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -35,12 +35,13 @@ export class LoginComponent implements OnInit {
 
     this.idInputError.isActive = false;
 
-    this.loginService.getOngName(this.ongID).subscribe(
+    this.accessService.getOngName(this.ongID).subscribe(
       res => {
         this.ongName = res['name'];
 
         this.login();
       },
+      
       error => {
         return this.showError(error);
       }
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('ongId', this.ongID);
     localStorage.setItem('ongName', this.ongName);
 
-    this.router.navigate(['register']);
+    this.router.navigate(['profile']);
   }
 
   private showError(message: string): void {
