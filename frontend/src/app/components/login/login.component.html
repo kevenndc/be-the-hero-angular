@@ -1,0 +1,32 @@
+<div class="login-container">
+  <section class="form">
+    <img [src]="logo" alt="Logo">
+
+    <form (submit)="handleLogin($event)">
+      <h1>Faça seu login</h1>
+      
+      <input 
+        [class.error]="idInputError.isActive"
+        type="text" 
+        (change)="ongID = ongIDInput.value" 
+        placeholder="Sua ID"
+        #ongIDInput 
+      />
+
+      <button class="button" type="submit">Entrar</button> 
+
+      <a [routerLink]="['/register']" class="back-link">
+        <i-feather name="log-in" class="icone" style="color: #e02041; height: 16px;"></i-feather>
+        Não tenho cadastro
+      </a>
+    </form>
+  </section>
+  <img [src]="heroesImg" alt="Be The Hero" />
+</div>
+
+<!--Modal de para mostrar erros-->
+<app-error-modal 
+  *ngIf="idInputError.isActive" 
+  [error]="idInputError.message" 
+  (close)="handleModalClose($event)">
+</app-error-modal>
