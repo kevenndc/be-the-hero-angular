@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+//terceiros
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+//modelo
+import { API_ROUTES } from 'src/app/app.contant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccessService {
 
-  private baseURL: string = 'http://localhost:3333/';
-
   constructor(private http: HttpClient) { }
 
   getOngName(userId: string): Observable<any> {
 
-    return this.http.post(`${this.baseURL}sessions`, { id: userId })
+    return this.http.post(API_ROUTES.sessions, { id: userId })
       .pipe(
         catchError(this.handleError)
       )
   }
 
   registerONG(ongData: any): Observable<any> {
-    return this.http.post(`${this.baseURL}ongs`, ongData)
+    return this.http.post(API_ROUTES.ongs, ongData)
       .pipe(
         catchError(error => throwError(error))
       );

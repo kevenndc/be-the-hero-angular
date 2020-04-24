@@ -11,8 +11,6 @@ import { AccessService } from '../access.service';
 })
 export class LoginComponent implements OnInit {
 
-  logo: string = '../../../assets/logo.svg';
-  heroesImg: string = '../../../assets/heroes.png';
   ongID: string;
   private ongName: string;
 

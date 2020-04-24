@@ -18,9 +18,6 @@ export class RegisterComponent implements OnInit {
     uf: ''
   }
 
-  logo: string = '../../../assets/logo.svg';
-  heroesImg: string = '../../../assets/heroes.png';
-
   constructor(private accessService: AccessService, private router: Router) { }
 
   ngOnInit(): void {

@@ -9,7 +9,6 @@ import { OngService } from '../ong.service';
 })
 export class ProfileComponent implements OnInit {
 
-  logo: string = '../../../assets/logo.svg';
   ongName: string;
   ongId: string;
   incidents: any[];

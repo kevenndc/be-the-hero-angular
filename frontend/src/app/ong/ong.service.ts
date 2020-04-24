@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+//terceiros
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+//modelos
+import { API_ROUTES } from 'src/app/app.contant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OngService {
 
-  private baseURL: string = 'http://localhost:3333/';
-
   constructor(private http: HttpClient) { }
 
   getIncidents(ongId: string): Observable<any> {
-    return this.http.get(`${this.baseURL}profile`, {
+    return this.http.get(API_ROUTES.profile, {
       headers: {
         Authorization: ongId
       }
@@ -21,7 +24,7 @@ export class OngService {
   }
 
   createIncident(incident: any): Observable<any> {
-    return this.http.post(`${this.baseURL}incidents`, incident , {
+    return this.http.post(API_ROUTES.incidents, incident, {
       headers: {
         Authorization: incident.ongId
       }
@@ -33,7 +36,7 @@ export class OngService {
 
   deleteIncient(incidentId: string, ongId: string): Observable<any> {
     console.log(incidentId);
-    return this.http.delete(`${this.baseURL}incidents/${incidentId}`, {
+    return this.http.delete(`${API_ROUTES.incidents}/${incidentId}`, {
       headers: {
         Authorization: ongId
       }

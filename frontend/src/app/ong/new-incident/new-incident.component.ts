@@ -9,7 +9,6 @@ import { OngService } from '../ong.service';
 })
 export class NewIncidentComponent implements OnInit {
 
-  logo: string = '../../../assets/logo.svg';
   newIncident = {
     title: '',
     value: '',

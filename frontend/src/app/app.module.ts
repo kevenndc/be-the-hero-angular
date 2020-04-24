@@ -1,12 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { FeatherIconsModule } from './modules/feather-icons/feather-icons.module';
-import { AppComponent } from './app.component';
+//modulos
 import { AccessModule } from './access/access.module';
 import { OngModule } from './ong/ong.module';
+import { AppRoutingModule } from './app-routing.module';
+import { FeatherIconsModule } from './modules/feather-icons/feather-icons.module';
+
+//componentes
+import { AppComponent } from './app.component';
+
+//interceptadores
+import { APIInterceptor } from './interceptors/api.interceptor';
+
 
 
 @NgModule({
@@ -21,7 +28,9 @@ import { OngModule } from './ong/ong.module';
     AccessModule,
     OngModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
