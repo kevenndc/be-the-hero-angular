@@ -12,43 +12,33 @@
       </a>
     </section>
 
-    <form (submit)="handleRegister($event)">
+    <form [formGroup]="form" (ngSubmit)="handleRegister()">
       <input 
         type="text"
         placeholder="Nome da ONG"
-        (input)="formFields.name = nameInput.value"
-        #nameInput
-        required
+        formControlName="name"
       />
       <input 
         type="email"
         placeholder="E-mail"
-        (input)="formFields.email = emailInput.value"
-        #emailInput
-        required
+        formControlName="email"
       />
       <input 
         type="text"
         placeholder="Whatsapp"
-        (input)="formFields.whatsapp = whatsappInput.value"
-        #whatsappInput
-        required
+        formControlName="whatsapp"
       />
       <div class="input-group">
         <input 
           type="text"
           placeholder="Cidade"
-          (input)="formFields.city = cityInput.value"
-          #cityInput
-          required
+          formControlName="city"
         />
         <input 
           type="text"
           placeholder="UF"
           style="width: 80px"
-          (input)="formFields.uf = ufInput.value"
-          #ufInput
-          required
+          formControlName="uf"
         />
       </div>
       <button type="submit" class="button">Cadastrar</button>

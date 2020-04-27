@@ -7,6 +7,7 @@ import { AccessModule } from './access/access.module';
 import { OngModule } from './ong/ong.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FeatherIconsModule } from './modules/feather-icons/feather-icons.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //componentes
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { APIInterceptor } from './interceptors/api.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FeatherIconsModule,
     HttpClientModule,
     AccessModule,
