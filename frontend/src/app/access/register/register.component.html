@@ -13,11 +13,16 @@
     </section>
 
     <form [formGroup]="form" (ngSubmit)="handleRegister()">
-      <input 
+      <app-text-input 
+        formControlName="name" 
+        type="text" 
+        placeholder="Nome da ONG">
+      </app-text-input>
+      <!-- <input 
         type="text"
         placeholder="Nome da ONG"
         formControlName="name"
-      />
+      /> -->
       <input 
         type="email"
         placeholder="E-mail"

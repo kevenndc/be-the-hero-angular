@@ -2,17 +2,23 @@
   <section class="form">
     <img src="assets/logo.svg" alt="Logo">
 
-    <form (submit)="handleLogin($event)">
+    <form  [formGroup]="form" (submit)="handleLogin($event)">
       <h1>Faça seu login</h1>
+
+      <app-text-input
+        type="text"
+        placeholder="Sua ID"
+        [fc]="form.controls.ongId">
+      </app-text-input>
       
-      <input 
+      <!-- <input 
         [class.error]="idInputError.isActive"
         type="text" 
         (change)="ongID = ongIDInput.value" 
         placeholder="Sua ID"
         #ongIDInput 
         required
-      />
+      /> -->
 
       <button class="button" type="submit">Entrar</button> 
 

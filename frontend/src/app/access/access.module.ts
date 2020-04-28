@@ -9,7 +9,8 @@ import { FeatherIconsModule } from '../modules/feather-icons/feather-icons.modul
 import { LoginComponent } from './login/login.component';
 import { ErrorModalComponent } from './login/error-modal/error-modal.component';
 import { RegisterComponent } from './register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormUtilsModule } from '../form-utils/form-utils.module';
 
 
 
@@ -22,8 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     FeatherIconsModule,
-    AccessRoutingModule
+    AccessRoutingModule,
+    FormUtilsModule
   ]
 })
 export class AccessModule { }

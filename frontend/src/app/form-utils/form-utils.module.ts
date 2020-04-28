@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+//componentes
+import { TextInputComponent } from './components/text-input/text-input.component';
 
+const COMPONENTS = [
+  TextInputComponent,
+];
 
 @NgModule({
-  declarations: [],
+  declarations: COMPONENTS,
   imports: [
     CommonModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule,
+  ],
+  exports: COMPONENTS
 })
 export class FormUtilsModule { }

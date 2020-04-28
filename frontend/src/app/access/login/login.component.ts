@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AccessService } from '../access.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -19,10 +20,21 @@ export class LoginComponent implements OnInit {
     message: ''
   }
 
+  form: FormGroup;
 
-  constructor(private accessService: AccessService, private router: Router) { }
+
+  constructor(
+    private accessService: AccessService, 
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+
+    this.form = this.formBuilder.group({
+      ongId: this.formBuilder.control('')
+    });
+
   }
 
   handleLogin(e) {
