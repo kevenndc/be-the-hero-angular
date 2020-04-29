@@ -15,9 +15,9 @@ export class AccessService {
 
   constructor(private http: HttpClient) { }
 
-  getOngName(userId: string): Observable<any> {
+  getOngName(data: Object): Observable<any> {
 
-    return this.http.post(API_ROUTES.sessions, { id: userId })
+    return this.http.post(API_ROUTES.sessions, data)
       .pipe(
         catchError(this.handleError)
       )

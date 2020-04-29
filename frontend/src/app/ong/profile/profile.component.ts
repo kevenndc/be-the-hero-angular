@@ -11,24 +11,13 @@ export class ProfileComponent implements OnInit {
 
   ongName: string;
   ongId: string;
-  incidents: any[];
+  incidents: any[] = [];
 
   constructor(private ongService: OngService, private router: Router) { }
 
   ngOnInit(): void {
-    this.ongName = localStorage.getItem('ongName');
-    this.ongId = localStorage.getItem('ongId');
-
-    this.ongService.getIncidents(this.ongId)
-      .subscribe(
-        data => {
-          this.incidents = data;
-        },
-
-        error => {
-          alert(error);
-        }
-      )
+    this.getOngInfo();
+    this.getIncidents();
   }
 
   handleLogout(e) {
@@ -48,6 +37,24 @@ export class ProfileComponent implements OnInit {
           alert(error);
         }
       )
+  }
+
+  getOngInfo() {
+    this.ongName = localStorage.getItem('ongName');
+    this.ongId = localStorage.getItem('ongId');
+  }
+
+  getIncidents() {
+    this.ongService.getIncidents(this.ongId)
+      .subscribe(
+        data => {
+          this.incidents = data;
+        },
+
+        error => {
+          alert(error);
+        }
+      );
   }
 
 }

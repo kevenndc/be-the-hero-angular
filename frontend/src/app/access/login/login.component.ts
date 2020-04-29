@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AccessService } from '../access.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,7 +12,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  ongID: string;
   private ongName: string;
 
   idInputError = {
@@ -21,6 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
   form: FormGroup;
+
+  submitted: boolean = false;
 
 
   constructor(
@@ -32,20 +33,24 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.formBuilder.group({
-      ongId: this.formBuilder.control('')
+      id: [null, Validators.required],
     });
 
   }
 
+  //getter conveniente para retornar todos os campos do formulário
+  get f() { return this.form.controls; }
+
   handleLogin(e) {
     e.preventDefault();
+    this.submitted = true;
 
-    if (!this.ongID) 
-      return this.showError('Por favor, preencha o campo com o ID da ONG.');
+    if (this.form.invalid) 
+       return this.showError('Por favor, preencha o campo com o ID da ONG.');
 
     this.idInputError.isActive = false;
 
-    this.accessService.getOngName(this.ongID).subscribe(
+    this.accessService.getOngName(this.form.value).subscribe(
       res => {
         this.ongName = res['name'];
 
@@ -60,7 +65,7 @@ export class LoginComponent implements OnInit {
   }
 
   private login() {
-    localStorage.setItem('ongId', this.ongID);
+    localStorage.setItem('ongId', this.f.id.value);
     localStorage.setItem('ongName', this.ongName);
 
     this.router.navigate(['profile']);

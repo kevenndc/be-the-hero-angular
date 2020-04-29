@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, forwardRef } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input, 
+  forwardRef, 
+  ViewEncapsulation 
+} from '@angular/core';
+
 import { 
   ControlValueAccessor, 
   NG_VALUE_ACCESSOR, 
@@ -15,13 +22,15 @@ import {
       useExisting: forwardRef(() => TextInputComponent),
       multi: true
     }
-  ]
+  ],
+  //encapsulation: ViewEncapsulation.None
 })
 export class TextInputComponent implements OnInit, ControlValueAccessor {
 
   @Input() type: string;
   @Input() placeholder: string;
   @Input() fc: FormControl;
+  @Input() isInvalid: boolean;
 
   private value: string;
   private propagateChange: Function;
@@ -32,15 +41,15 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
     //if (this.formControl) throw Error('Informe o FormControlName para o campo.');
   }
 
-  writeValue(value: any) {
+  writeValue(value: any): void {
 
     this.value = value;
   }
 
-  registerOnChange(fn: Function) {
+  registerOnChange(fn: Function): void {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(): void {}
 
 }

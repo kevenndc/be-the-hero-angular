@@ -40,7 +40,7 @@
   max-width: 450px;
 }
 
-.register-container .content form input {
+.register-container .content form input, app-text-input {
   margin-top: 8px;
 }
 

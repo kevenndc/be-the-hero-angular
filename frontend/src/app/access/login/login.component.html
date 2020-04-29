@@ -8,17 +8,9 @@
       <app-text-input
         type="text"
         placeholder="Sua ID"
-        [fc]="form.controls.ongId">
+        [fc]="f.id"
+        [isInvalid]="submitted && f.id.invalid">
       </app-text-input>
-      
-      <!-- <input 
-        [class.error]="idInputError.isActive"
-        type="text" 
-        (change)="ongID = ongIDInput.value" 
-        placeholder="Sua ID"
-        #ongIDInput 
-        required
-      /> -->
 
       <button class="button" type="submit">Entrar</button> 
 

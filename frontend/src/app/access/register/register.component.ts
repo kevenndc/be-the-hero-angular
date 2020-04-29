@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 //servicos
 import { AccessService } from '../access.service';
@@ -13,6 +13,7 @@ import { AccessService } from '../access.service';
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
+  submitted: boolean = false;
 
   constructor(
     private accessService: AccessService, 
@@ -23,14 +24,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.formBuilder.group({
-      name: [null],
-      email: [null],
-      whatsapp: [null],
-      city: [null],
-      uf: [null]
+      name: [null, Validators.required],
+      email: [null, Validators.required, Validators.email],
+      whatsapp: [null, Validators.required],
+      city: [null, Validators.required],
+      uf: [null, Validators.required]
     });
 
   }
+
+  get f() { return this.form.controls; }
 
   handleRegister() {
     //e.preventDefault();

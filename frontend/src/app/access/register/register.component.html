@@ -14,31 +14,34 @@
 
     <form [formGroup]="form" (ngSubmit)="handleRegister()">
       <app-text-input 
-        formControlName="name" 
+        [fc]="f.name" 
         type="text" 
-        placeholder="Nome da ONG">
-      </app-text-input>
-      <!-- <input 
-        type="text"
         placeholder="Nome da ONG"
-        formControlName="name"
-      /> -->
-      <input 
-        type="email"
+        [isInvalid]="submitted && f.name.invalid">
+      </app-text-input>
+
+      <app-text-input 
+        [fc]="f.email" 
+        type="email" 
         placeholder="E-mail"
-        formControlName="email"
-      />
-      <input 
-        type="text"
+        [isInvalid]="submitted && f.email.invalid">
+      </app-text-input>
+
+      <app-text-input 
+        [fc]="f.whatsapp" 
+        type="text" 
         placeholder="Whatsapp"
-        formControlName="whatsapp"
-      />
+        [isInvalid]="submitted && f.whatsapp.invalid">
+      </app-text-input>
+
       <div class="input-group">
-        <input 
-          type="text"
+        <app-text-input 
+          [fc]="f.city" 
+          type="text" 
           placeholder="Cidade"
-          formControlName="city"
-        />
+          [isInvalid]="submitted && f.city.invalid">
+        </app-text-input>
+        
         <input 
           type="text"
           placeholder="UF"
