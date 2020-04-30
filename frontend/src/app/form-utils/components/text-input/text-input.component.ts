@@ -23,7 +23,7 @@ import {
       multi: true
     }
   ],
-  //encapsulation: ViewEncapsulation.None
+  
 })
 export class TextInputComponent implements OnInit, ControlValueAccessor {
 

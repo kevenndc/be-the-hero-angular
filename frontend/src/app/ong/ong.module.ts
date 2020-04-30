@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { OngRoutingModule } from './ong-routing.module';
+//componentes
 import { ProfileComponent } from 'src/app/ong/profile/profile.component';
-import { FeatherIconsModule } from '../modules/feather-icons/feather-icons.module';
 import { IncidentComponent } from 'src/app/ong/profile/incident/incident.component';
 import { NewIncidentComponent } from 'src/app/ong/new-incident/new-incident.component';
+
+
+//módulos
+import { OngRoutingModule } from './ong-routing.module';
+import { FeatherIconsModule } from '../modules/feather-icons/feather-icons.module';
+import { FormUtilsModule } from '../form-utils/form-utils.module';
 
 
 
@@ -13,12 +19,15 @@ import { NewIncidentComponent } from 'src/app/ong/new-incident/new-incident.comp
   imports: [
     CommonModule,
     OngRoutingModule,
-    FeatherIconsModule
+    FeatherIconsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FormUtilsModule
   ],
   declarations: [
     ProfileComponent,
     IncidentComponent,
-    NewIncidentComponent
+    NewIncidentComponent,
   ],
 })
 export class OngModule { }

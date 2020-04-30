@@ -13,13 +13,13 @@
     </section>
 
     <form (submit)="handleSubmit($event)">
-      <input 
-        type="text"
+      <app-text-input 
+        [fc]="f.title" 
+        type="text" 
         placeholder="Título do caso"
-        (input)="newIncident.title = titleInput.value"
-        #titleInput
-        required
-      />
+        [isInvalid]="submitted && f.title.invalid">
+      </app-text-input>
+
       <textarea 
         type="text"
         placeholder="Descrição"
@@ -27,13 +27,13 @@
         #descriptionInput
         required
       ></textarea>
-      <input 
-        type="text"
+
+      <app-text-input 
+        [fc]="f.value" 
+        type="text" 
         placeholder="Valor em reais"
-        (input)="newIncident.value = valueInput.value"
-        #valueInput
-        required
-      />
+        [isInvalid]="submitted && f.value.invalid">
+      </app-text-input>
 
       <button type="submit" class="button">Cadastrar</button>
     </form>

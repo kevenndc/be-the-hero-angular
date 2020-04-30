@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //servicos
 import { AccessService } from '../access.service';
@@ -8,7 +8,7 @@ import { AccessService } from '../access.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
 
@@ -24,11 +24,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.formBuilder.group({
-      name: [null, Validators.required],
-      email: [null, Validators.required, Validators.email],
-      whatsapp: [null, Validators.required],
-      city: [null, Validators.required],
-      uf: [null, Validators.required]
+      name: this.formBuilder.control(null, Validators.required),
+      email: this.formBuilder.control(null, [
+        Validators.required, 
+        Validators.email
+      ]),
+      whatsapp: this.formBuilder.control(null, Validators.required),
+      city: this.formBuilder.control(null, Validators.required),
+      uf: this.formBuilder.control(null, Validators.required)
     });
 
   }
@@ -36,7 +39,9 @@ export class RegisterComponent implements OnInit {
   get f() { return this.form.controls; }
 
   handleRegister() {
-    //e.preventDefault();
+    this.submitted = true;
+
+    if (this.form.invalid) return;
     
     this.accessService.registerONG(this.form.value)
       .subscribe(

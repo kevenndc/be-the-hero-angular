@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+//serviços
 import { OngService } from '../ong.service';
 
 @Component({
@@ -9,6 +12,7 @@ import { OngService } from '../ong.service';
 })
 export class NewIncidentComponent implements OnInit {
 
+  //Retirar isso
   newIncident = {
     title: '',
     value: '',
@@ -16,16 +20,29 @@ export class NewIncidentComponent implements OnInit {
     ongId: ''
   }
 
-  constructor(private ongService: OngService, private router: Router) { }
+  formIncident: FormGroup;
+  submitted: boolean = false;
+
+  get f() { return this.formIncident.controls; }
+
+  constructor(
+    private ongService: OngService, 
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
-    this.newIncident.ongId = localStorage.getItem('ongId');
+    this.getOngInfo();
+    this.initForm();
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    this.submitted = true;
 
-    this.ongService.createIncident(this.newIncident)
+    if(this.formIncident.invalid) return;
+
+    this.ongService.createIncident(this.formIncident.value)
       .subscribe(
         response => {
           this.router.navigate(['profile']);
@@ -35,6 +52,19 @@ export class NewIncidentComponent implements OnInit {
           alert(error);
         }
       )
+  }
+
+  getOngInfo() {
+    this.newIncident.ongId = localStorage.getItem('ongId');
+  }
+
+  initForm() {
+    this.formIncident = this.formBuilder.group({
+      title: this.formBuilder.control(null, Validators.required),
+      value: this.formBuilder.control(null, Validators.required),
+      description: this.formBuilder.control(null, Validators.required),
+      ongId: this.formBuilder.control(null, Validators.required)
+    });
   }
 
 }

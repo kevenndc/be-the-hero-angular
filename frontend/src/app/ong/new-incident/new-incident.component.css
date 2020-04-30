@@ -35,12 +35,12 @@
   color: #737380;
 }
 
-.new-incident-container .content form {
+/* .content form {
   width: 100%;
   max-width: 450px;
-}
+} */
 
-.new-incident-container .content form input {
+.new-incident-container .content form app-text-input {
   margin-top: 8px;
 }
 

@@ -13,6 +13,7 @@
     </section>
 
     <form [formGroup]="form" (ngSubmit)="handleRegister()">
+
       <app-text-input 
         [fc]="f.name" 
         type="text" 
@@ -42,12 +43,14 @@
           [isInvalid]="submitted && f.city.invalid">
         </app-text-input>
         
-        <input 
-          type="text"
+        <app-text-input 
+          [fc]="f.uf" 
+          type="text" 
           placeholder="UF"
-          style="width: 80px"
-          formControlName="uf"
-        />
+          style="width: 80px;"
+          [isInvalid]="submitted && f.uf.invalid">
+        </app-text-input>
+
       </div>
       <button type="submit" class="button">Cadastrar</button>
     </form>
