@@ -4,9 +4,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //componentes
 import { TextInputComponent } from './components/text-input/text-input.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
 
 const COMPONENTS = [
   TextInputComponent,
+  TextAreaComponent
 ];
 
 @NgModule({

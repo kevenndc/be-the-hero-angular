@@ -12,16 +12,10 @@ import { OngService } from '../ong.service';
 })
 export class NewIncidentComponent implements OnInit {
 
-  //Retirar isso
-  newIncident = {
-    title: '',
-    value: '',
-    description: '',
-    ongId: ''
-  }
-
   formIncident: FormGroup;
   submitted: boolean = false;
+
+  private ongId: string;
 
   get f() { return this.formIncident.controls; }
 
@@ -33,16 +27,18 @@ export class NewIncidentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOngInfo();
-    this.initForm();
+    this.initForm(); 
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    
     this.submitted = true;
 
     if(this.formIncident.invalid) return;
+    
 
-    this.ongService.createIncident(this.formIncident.value)
+    this.ongService.createIncident(this.getRequestBody())
       .subscribe(
         response => {
           this.router.navigate(['profile']);
@@ -50,12 +46,13 @@ export class NewIncidentComponent implements OnInit {
 
         error => {
           alert(error);
+          console.log(this.getRequestBody())
         }
       )
   }
 
   getOngInfo() {
-    this.newIncident.ongId = localStorage.getItem('ongId');
+    this.ongId = localStorage.getItem('ongId');
   }
 
   initForm() {
@@ -63,8 +60,14 @@ export class NewIncidentComponent implements OnInit {
       title: this.formBuilder.control(null, Validators.required),
       value: this.formBuilder.control(null, Validators.required),
       description: this.formBuilder.control(null, Validators.required),
-      ongId: this.formBuilder.control(null, Validators.required)
     });
+  }
+
+  getRequestBody() {
+    return {
+      ...this.formIncident.value,
+      ongId: this.ongId
+    };
   }
 
 }

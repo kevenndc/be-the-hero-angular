@@ -12,7 +12,7 @@
       </a>
     </section>
 
-    <form (submit)="handleSubmit($event)">
+    <form [formGroup]="formIncident" (submit)="handleSubmit($event)">
       <app-text-input 
         [fc]="f.title" 
         type="text" 
@@ -20,13 +20,12 @@
         [isInvalid]="submitted && f.title.invalid">
       </app-text-input>
 
-      <textarea 
-        type="text"
+      <app-text-area
         placeholder="Descrição"
-        (input)="newIncident.description = descriptionInput.value"
-        #descriptionInput
-        required
-      ></textarea>
+        [fc]="f.description"
+        [isInvalid]="submitted && f.description.invalid"
+      >
+      </app-text-area>
 
       <app-text-input 
         [fc]="f.value" 
