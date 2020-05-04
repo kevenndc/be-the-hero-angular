@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { ErrorModalComponent } from './login/error-modal/error-modal.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FormUtilsModule } from '../form-utils/form-utils.module';
+import { UtilsModule } from '../utils/utils.module';
 
 
 
@@ -26,7 +26,7 @@ import { FormUtilsModule } from '../form-utils/form-utils.module';
     FormsModule,
     FeatherIconsModule,
     AccessRoutingModule,
-    FormUtilsModule
+    UtilsModule
   ]
 })
 export class AccessModule { }

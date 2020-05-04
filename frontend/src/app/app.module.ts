@@ -24,8 +24,8 @@ import { APIInterceptor } from './interceptors/api.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FeatherIconsModule,
+    //ReactiveFormsModule,
+    //FeatherIconsModule,
     HttpClientModule,
     AccessModule,
     OngModule
@@ -35,4 +35,4 @@ import { APIInterceptor } from './interceptors/api.interceptor';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule { } 

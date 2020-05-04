@@ -12,7 +12,9 @@
         [isInvalid]="submitted && f.id.invalid">
       </app-text-input>
 
-      <button class="button" type="submit">Entrar</button> 
+      <app-submit-button
+        text="Entrar">
+      </app-submit-button>
 
       <a [routerLink]="['/register']" class="back-link">
         <i-feather name="log-in" class="icone" style="height: 16px;"></i-feather>
@@ -22,10 +24,3 @@
   </section>
   <img src="assets/heroes.png" alt="Be The Hero" />
 </div>
-
-<!--Modal de para mostrar erros-->
-<app-error-modal 
-  *ngIf="idInputError.isActive" 
-  [error]="idInputError.message" 
-  (close)="handleModalClose($event)">
-</app-error-modal>
