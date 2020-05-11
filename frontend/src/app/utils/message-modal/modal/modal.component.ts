@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BsModalRef } from 'ngx-bootstrap/modal';
+
+import { setTheme } from 'ngx-bootstrap/utils';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -7,27 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  message: string;
-  isActive: boolean;
+  public message: string;
 
-  mostraMensagem(mensagem: string) {
-    alert(mensagem);
+  constructor(public bsModalRef: BsModalRef) { 
+    setTheme('bs4');
   }
-
-  constructor() { }
-
   ngOnInit(): void {
   }
 
-  showModal(message: string) {
-    this.message = message;
-    this.isActive = true;
-  }
-
-  handleClosing() {
-    this.isActive = false;
-  }
-
 }
-
-export const modalRef = new ModalComponent();

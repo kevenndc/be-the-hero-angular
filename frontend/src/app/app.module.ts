@@ -6,14 +6,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccessModule } from './access/access.module';
 import { OngModule } from './ong/ong.module';
 import { AppRoutingModule } from './app-routing.module';
-import { FeatherIconsModule } from './modules/feather-icons/feather-icons.module';
-import { ReactiveFormsModule } from '@angular/forms';
 
 //componentes
 import { AppComponent } from './app.component';
 
 //interceptadores
 import { APIInterceptor } from './interceptors/api.interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -24,11 +23,10 @@ import { APIInterceptor } from './interceptors/api.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //ReactiveFormsModule,
-    //FeatherIconsModule,
     HttpClientModule,
     AccessModule,
-    OngModule
+    OngModule,
+    ModalModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: APIInterceptor, multi: true }

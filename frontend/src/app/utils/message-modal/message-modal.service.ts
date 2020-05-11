@@ -1,16 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
-import { modalRef } from './modal/modal.component';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+
+import { ModalComponent } from './modal/modal.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageModalService {
 
-  constructor() { }
+  public bsModalRef: BsModalRef;
+  private modalConfig: ModalOptions;
 
-  showMessage(mensagem: string) {
-    modalRef.showModal(mensagem);
+  constructor(
+    private bsModalService: BsModalService,
+  ) { 
+    
+    this.modalConfig = {
+      animated: true,
+      keyboard: true,
+      backdrop: "static",
+    }
+  }
+
+  showMessage(message: string): void {
+    this.modalConfig.initialState = { message: message }
+    const initialState = { message: message };
+    this.bsModalRef = this.bsModalService.show(ModalComponent, this.modalConfig)
   }
 
 }
