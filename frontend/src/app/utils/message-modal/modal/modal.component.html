@@ -1,1 +1,12 @@
-<p>modal works!</p>
+<!-- Modal -->
+<div *ngIf="isActive" id="modal" class="modal">
+
+  <!-- Conteúdo -->
+  <div class="modal-content">
+    <span (click)="handleClosing()" class="close">
+      &times;
+    </span>
+    <p class="error-message"> {{message}} </p>
+  </div>
+
+</div>

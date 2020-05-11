@@ -10,6 +10,9 @@ import { TextInputComponent } from './form/text-input/text-input.component';
 import { TextAreaComponent } from './form/text-area/text-area.component';
 import { SubmitButtonComponent } from './form/submit-button/submit-button.component';
 
+//servicos
+import { MessageModalService } from './message-modal/message-modal.service';
+
 
 const COMPONENTS = [
   TextInputComponent,
@@ -25,5 +28,8 @@ const COMPONENTS = [
     FormsModule
   ],
   exports: COMPONENTS,
+  providers: [
+    MessageModalService
+  ]
 })
 export class UtilsModule { }

@@ -26,7 +26,7 @@ import { UtilsModule } from '../utils/utils.module';
     FormsModule,
     FeatherIconsModule,
     AccessRoutingModule,
-    UtilsModule
+    UtilsModule,
   ]
 })
 export class AccessModule { }

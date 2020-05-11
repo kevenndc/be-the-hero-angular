@@ -7,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
+  message: string;
+  isActive: boolean;
+
+  mostraMensagem(mensagem: string) {
+    alert(mensagem);
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showModal(message: string) {
+    this.message = message;
+    this.isActive = true;
+  }
+
+  handleClosing() {
+    this.isActive = false;
+  }
+
 }
+
+export const modalRef = new ModalComponent();

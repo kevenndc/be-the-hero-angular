@@ -9,6 +9,7 @@ import {
 
 //serviços
 import { AccessService } from '../access.service';
+import { MessageModalService } from 'src/app/utils/message-modal/message-modal.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private accessService: AccessService, 
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: MessageModalService
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.form.invalid) 
-       return this.showError('Por favor, preencha o campo com o ID da ONG.');
+       return this.modalService.showMessage('Por favor, preencha o campo com o ID da ONG.');
 
     this.idInputError.isActive = false;
 
