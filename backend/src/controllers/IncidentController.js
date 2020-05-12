@@ -54,10 +54,10 @@ module.exports = {
       .where('id', id)
       .first()
 
-    if (!incident) return response.status(404).json({ error: 'Incident no found.' });
+    if (!incident) return response.status(404).json({ error: 'Incidente não encontrado.' });
 
     if (incident.ong_id !== ong_id) {
-      return response.status(402).json({ error: 'Operation not permited.' });
+      return response.status(402).json({ message: 'Operação não permitida.' });
     }
 
     await connection('incidents')

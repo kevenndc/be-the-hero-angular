@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //serviços
 import { OngService } from '../ong.service';
+import { MessageModalService } from 'src/app/utils/message-modal/message-modal.service';
 
 @Component({
   selector: 'app-new-incident',
@@ -22,7 +23,8 @@ export class NewIncidentComponent implements OnInit {
   constructor(
     private ongService: OngService, 
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: MessageModalService
   ) { }
 
   ngOnInit(): void {
@@ -30,32 +32,27 @@ export class NewIncidentComponent implements OnInit {
     this.initForm(); 
   }
 
-  handleSubmit(e) {
+  handleSubmit(e): void {
     e.preventDefault();
     
     this.submitted = true;
 
-    if(this.formIncident.invalid) return;
+    if(this.formIncident.invalid) return this.modalService.showInvalidFormMessage();
     
 
     this.ongService.createIncident(this.getRequestBody())
       .subscribe(
         response => {
           this.router.navigate(['profile']);
-        },
-
-        error => {
-          alert(error);
-          console.log(this.getRequestBody())
         }
       )
   }
 
-  getOngInfo() {
+  getOngInfo(): void {
     this.ongId = localStorage.getItem('ongId');
   }
 
-  initForm() {
+  initForm(): void {
     this.formIncident = this.formBuilder.group({
       title: this.formBuilder.control(null, Validators.required),
       value: this.formBuilder.control(null, Validators.required),
@@ -63,7 +60,7 @@ export class NewIncidentComponent implements OnInit {
     });
   }
 
-  getRequestBody() {
+  getRequestBody(): Object {
     return {
       ...this.formIncident.value,
       ongId: this.ongId

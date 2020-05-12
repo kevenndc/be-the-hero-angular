@@ -46,7 +46,7 @@
 }
 
 .register-container .content form .input-group app-text-input:first-child {
-  flex: 0 0 calc(100% - 80px);
+  flex: 0 0 calc(100% - 88px);
 }
 
 .register-container .content form .input-group app-text-input + app-text-input {

@@ -20,39 +20,31 @@ export class ProfileComponent implements OnInit {
     this.getIncidents();
   }
 
-  handleLogout(e) {
+  handleLogout(e): void {
     localStorage.clear();
     this.router.navigate(['/']);
   }
 
-  handleDeleteIncident(e) {
+  handleDeleteIncident(e): void {
 
     this.ongService.deleteIncient(e.incidentId, this.ongId)
       .subscribe(
         response => {
           this.incidents = this.incidents.filter(incident => incident.id !== e.incidentId);
-        },
-
-        error => {
-          alert(error);
         }
       )
   }
 
-  getOngInfo() {
+  getOngInfo(): void {
     this.ongName = localStorage.getItem('ongName');
     this.ongId = localStorage.getItem('ongId');
   }
 
-  getIncidents() {
+  getIncidents(): void {
     this.ongService.getIncidents(this.ongId)
       .subscribe(
         data => {
           this.incidents = data;
-        },
-
-        error => {
-          alert(error);
         }
       );
   }

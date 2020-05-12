@@ -28,7 +28,7 @@ export class IncidentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  emitDeleteRequest() {
+  emitDeleteRequest(): void {
     this.delete.emit({ incidentId: this.incident.id });
   }
 

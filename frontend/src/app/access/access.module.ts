@@ -7,7 +7,6 @@ import { FeatherIconsModule } from '../modules/feather-icons/feather-icons.modul
 
 //componentes
 import { LoginComponent } from './login/login.component';
-import { ErrorModalComponent } from './login/error-modal/error-modal.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UtilsModule } from '../utils/utils.module';
@@ -17,7 +16,6 @@ import { UtilsModule } from '../utils/utils.module';
 @NgModule({
   declarations: [
     LoginComponent,
-    ErrorModalComponent,
     RegisterComponent
   ],
   imports: [

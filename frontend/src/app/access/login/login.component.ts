@@ -48,12 +48,11 @@ export class LoginComponent implements OnInit {
   //getter conveniente para retornar todos os campos do formulário
   get f() { return this.form.controls; }
 
-  handleLogin(e) {
+  handleLogin(e): void {
     e.preventDefault();
     this.submitted = true;
 
-    if (this.form.invalid) 
-       return this.modalService.showMessage('Por favor, preencha o campo com o ID da ONG.');
+    if (this.form.invalid) return this.modalService.showInvalidFormMessage();
 
     this.idInputError.isActive = false;
 
@@ -62,29 +61,16 @@ export class LoginComponent implements OnInit {
         this.ongName = res['name'];
 
         this.login();
-      },
-      
-      error => {
-        return this.showError(error);
       }
     ); 
 
   }
 
-  private login() {
+  private login(): void {
     localStorage.setItem('ongId', this.f.id.value);
     localStorage.setItem('ongName', this.ongName);
 
     this.router.navigate(['profile']);
-  }
-
-  private showError(message: string): void {
-    this.idInputError.isActive = true;
-    this.idInputError.message = message;
-  }
-
-  handleModalClose(e) {
-    return this.idInputError.isActive = e.isActive;
   }
 
 }

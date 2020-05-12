@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 //terceiros
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 //modelos
 import { API_ROUTES } from 'src/app/app.contant';
@@ -28,21 +27,14 @@ export class OngService {
       headers: {
         Authorization: incident.ongId
       }
-    })
-    .pipe(
-      catchError(error => throwError(error))
-    );
+    });
   }
 
   deleteIncient(incidentId: string, ongId: string): Observable<any> {
-    console.log(incidentId);
     return this.http.delete(`${API_ROUTES.incidents}/${incidentId}`, {
       headers: {
         Authorization: ongId
       }
-    })
-    .pipe(
-      catchError(error => throwError(error))
-    );
+    });
   }
 }

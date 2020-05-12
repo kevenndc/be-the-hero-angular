@@ -9,8 +9,8 @@ module.exports = {
       .where('id', id)
       .first();
 
-    if (!ong) return response.status(404).json({ error: 'No ONG found with this ID' });
-
+    if (!ong) return response.status(404).json({ message: 'Nenhuma ONG encontrada com esse ID.' });
+ 
     return response.json( ong );
   }
 }

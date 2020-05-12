@@ -21,7 +21,7 @@ import { UtilsModule } from '../utils/utils.module';
     FeatherIconsModule,
     ReactiveFormsModule,
     FormsModule,
-    UtilsModule
+    UtilsModule,
   ],
   declarations: [
     ProfileComponent,

@@ -16,27 +16,10 @@ export class AccessService {
   constructor(private http: HttpClient) { }
 
   getOngName(data: Object): Observable<any> {
-
-    return this.http.post(API_ROUTES.sessions, data)
-      .pipe(
-        catchError(this.handleError)
-      )
+    return this.http.post(API_ROUTES.sessions, data);
   }
 
   registerONG(ongData: any): Observable<any> {
-    return this.http.post(API_ROUTES.ongs, ongData)
-      .pipe(
-        catchError(error => throwError(error))
-      );
-  }
-
-  handleError(error) {
-    let errorMessage: string = '';
-    
-    if (error instanceof HttpErrorResponse) {
-      errorMessage = `Nenhuma ONG encontrada com o ID informado. Verifique se o ID está correto e tente novamente.`;
-    }
-
-    return throwError(errorMessage);
+    return this.http.post(API_ROUTES.ongs, ongData);
   }
 }

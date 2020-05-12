@@ -10,7 +10,7 @@ import {
 import { Observable } from 'rxjs';
 
 //modelo
-import { BASE_URL } from '../app.contant';
+import { BASE_URL } from '../../app.contant';
 
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {

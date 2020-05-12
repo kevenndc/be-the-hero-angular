@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //servicos
 import { AccessService } from '../access.service';
+import { MessageModalService } from 'src/app/utils/message-modal/message-modal.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private accessService: AccessService, 
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: MessageModalService
   ) { }
 
   ngOnInit(): void {
@@ -41,20 +43,16 @@ export class RegisterComponent implements OnInit {
   handleRegister() {
     this.submitted = true;
 
-    if (this.form.invalid) return;
+    if (this.form.invalid) return this.modalService.showInvalidFormMessage();
     
     this.accessService.registerONG(this.form.value)
       .subscribe(
         response => {
-          alert(`O ID da ONG é: ${response['id']}`);
+          this.modalService.showMessage(`O ID da ONG é: ${response['id']}`);
 
           this.router.navigate(['']);
-        },
-
-        error => {
-          alert(error);
         }
-      )
+      );
   }
 
 }

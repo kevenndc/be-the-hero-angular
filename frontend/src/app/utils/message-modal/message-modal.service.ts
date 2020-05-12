@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 
@@ -25,7 +25,12 @@ export class MessageModalService {
 
   showMessage(message: string): void {
     this.modalConfig.initialState = { message: message }
-    const initialState = { message: message };
+    this.bsModalRef = this.bsModalService.show(ModalComponent, this.modalConfig)
+  }
+
+  showInvalidFormMessage(): void {
+    let message: string = 'Um ou mais campos do formulários não foram preenchidos.'
+    this.modalConfig.initialState = { message: message }
     this.bsModalRef = this.bsModalService.show(ModalComponent, this.modalConfig)
   }
 

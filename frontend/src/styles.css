@@ -23,6 +23,11 @@ button {
   cursor: pointer;
 }
 
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .content form {
   width: 100%;
   max-width: 450px;
