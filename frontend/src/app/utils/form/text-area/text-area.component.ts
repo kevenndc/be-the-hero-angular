@@ -24,11 +24,16 @@ export class TextAreaComponent implements OnInit {
 
   @Input() placeholder: string;
   @Input() fc: FormControl;
-  @Input() isInvalid: boolean;
+  @Input() isInvalid: boolean; 
+  @Input() errorMessage: string;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getErrorMessage(): string {
+    return this.fc.errors.required ? "Este campo é obrigatório" : this.errorMessage;
   }
 
 }

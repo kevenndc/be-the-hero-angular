@@ -17,7 +17,8 @@
         [fc]="f.title" 
         type="text" 
         placeholder="Título do caso"
-        [isInvalid]="submitted && f.title.invalid">
+        [isInvalid]="submitted && f.title.invalid"
+        >
       </app-text-input>
 
       <app-text-area
@@ -31,7 +32,9 @@
         [fc]="f.value" 
         type="text" 
         placeholder="Valor em reais"
-        [isInvalid]="submitted && f.value.invalid">
+        [isInvalid]="submitted && f.value.invalid"
+        errorMessage="O valor informado é inválido."
+        >
       </app-text-input>
 
       <app-submit-button

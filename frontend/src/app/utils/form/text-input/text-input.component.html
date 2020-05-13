@@ -6,3 +6,6 @@
     [class.error]="isInvalid"
   />   
 </div>
+<div class="error-message" *ngIf="isInvalid">
+  <small> {{getErrorMessage()}} </small>
+</div>

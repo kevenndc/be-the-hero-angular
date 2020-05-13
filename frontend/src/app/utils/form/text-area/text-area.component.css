@@ -6,6 +6,11 @@
   border-color: #e02041;
 }
 
+.error-message {
+  color: #e02041;
+  padding-left: 5px;
+}
+
 textarea {
   width: 100%;
   min-height: 140px;

@@ -31,6 +31,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() fc: FormControl;
   @Input() isInvalid: boolean;
+  @Input() errorMessage: string;
 
   private value: string;
   private propagateChange: Function;
@@ -38,7 +39,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   constructor() { }
 
   ngOnInit(): void {
-    //if (this.formControl) throw Error('Informe o FormControlName para o campo.');
+    
   }
 
   writeValue(value: any): void {
@@ -51,5 +52,9 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnTouched(): void {}
+
+  getErrorMessage(): string {
+    return this.fc.errors.required ? "Este campo é obrigatório" : this.errorMessage;
+  }
 
 }

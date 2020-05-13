@@ -6,3 +6,6 @@
   >
   </textarea>
 </div>
+<div class="error-message" *ngIf="isInvalid">
+  <small> {{getErrorMessage()}} </small>
+</div>

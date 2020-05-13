@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   submitted: boolean = false;
 
-
   constructor(
     private accessService: AccessService, 
     private router: Router,

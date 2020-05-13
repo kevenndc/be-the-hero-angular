@@ -37,7 +37,11 @@ export class NewIncidentComponent implements OnInit {
     
     this.submitted = true;
 
-    if(this.formIncident.invalid) return this.modalService.showInvalidFormMessage();
+    if(this.formIncident.invalid) {
+      console.log(this.formIncident);
+      return this.modalService.showInvalidFormMessage();
+    
+    }
     
 
     this.ongService.createIncident(this.getRequestBody())
@@ -55,7 +59,10 @@ export class NewIncidentComponent implements OnInit {
   initForm(): void {
     this.formIncident = this.formBuilder.group({
       title: this.formBuilder.control(null, Validators.required),
-      value: this.formBuilder.control(null, Validators.required),
+      value: this.formBuilder.control(null, [
+        Validators.required,
+        Validators.pattern("^[0-9]+$")
+      ]),
       description: this.formBuilder.control(null, Validators.required),
     });
   }

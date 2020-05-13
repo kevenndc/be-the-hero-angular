@@ -29,7 +29,7 @@ export class MessageModalService {
   }
 
   showInvalidFormMessage(): void {
-    let message: string = 'Um ou mais campos do formulários não foram preenchidos.'
+    let message: string = 'Um ou mais campos do formulários não foram preenchidos corretamente.'
     this.modalConfig.initialState = { message: message }
     this.bsModalRef = this.bsModalService.show(ModalComponent, this.modalConfig)
   }
