@@ -31,10 +31,16 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string;
   @Input() fc: FormControl;
   @Input() isInvalid: boolean;
-  @Input() errorMessage: string;
+  @Input('errorMessage') customErrorMessage: string;
 
+  
   private value: string;
   private propagateChange: Function;
+
+  private defaultErrorMessages =  {
+    email: "O valor informado não é um email.",
+    required: "Este campo é obrigatório"
+  };
 
   constructor() { }
 
@@ -54,7 +60,8 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(): void {}
 
   getErrorMessage(): string {
-    return this.fc.errors.required ? "Este campo é obrigatório" : this.errorMessage;
+    const errorType = Object.keys(this.fc.errors)[0];
+    return this.defaultErrorMessages[errorType] ? this.defaultErrorMessages[errorType] : this.defaultErrorMessages;
   }
 
 }
